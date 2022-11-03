@@ -1,5 +1,14 @@
 package Labs_A.Lab2;
 
+/**
+ * @author Yaroslav Sobchenko
+ * Variant 226
+ * C5 = 1 (транспонування);
+ * C7 = 2 (short)
+ * C11 = 6 (Обчислити суму найбільших елементів в стовпцях матриці з парними номерами
+ *          та найменших елементів в стовпцях матриці з непарними номерами)
+ */
+
 public class Lab2 {
 
     public static final String colorReset = "\u001B[0m";
@@ -7,16 +16,10 @@ public class Lab2 {
     public static final String colorTextBlue = "\033[0;34m";
 
     public static void main(String[] args) {
-
-        int n = 3;
-        int k = 4;
-        int[][] result = new int[k][n];
-        int[][] array = new int[n][k];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < k; j++) {
-                array[i][j] = n*i + j;
-            }
-        }
+        final short[][] array = {{10, 8, 32, -4, -24, 59},
+                                {15, 26, -19, 18, 45, 20},
+                                {29, -10, -21, 12, 0, 19}};
+        short[][] result = new short[array[1].length][array.length];
 
         System.out.println(colorTextBlue + "Оригінальна матриця:" + colorReset);
 
@@ -33,8 +36,7 @@ public class Lab2 {
             }
         }
 
-        System.out.println();
-        System.out.println(colorTextBlue + "Транспонована матриця:");
+        System.out.println(colorTextBlue + "\nТранспонована матриця:");
 
         for (int i = 0; i < result.length; i++) {
             for (int j = 0; j < result[i].length; j++) {
@@ -42,5 +44,29 @@ public class Lab2 {
             }
             System.out.println();
         }
+
+        int summa = 0;
+        for (int j = 0; j < 3; j++) {
+            int max = result[0][j];
+            for (int i = 0; i < 4; i = i + 2) {
+                if (result[i][j] > max) {
+                    max = result[i][j];
+                }
+            }
+            summa += max;
+        }
+        System.out.println(colorTextBlue + "\nСума максимальних парних = " + colorTextYellow + summa);
+
+        summa = 0;
+        for (int j = 0; j < result[1].length; j++) {
+            int min = result[1][j];
+            for (int i = 1; i < result.length; i = i + 2) {
+                if (result[i][j] < min) {
+                    min = result[i][j];
+                }
+            }
+            summa += min;
+        }
+        System.out.println(colorTextBlue + "Сума мінімальних не парних = " + colorTextYellow + summa);
     }
 }
