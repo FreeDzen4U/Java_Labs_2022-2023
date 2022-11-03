@@ -29,7 +29,6 @@ public class Lab1 {
         System.out.println("C3 = " + Variant%3);
         System.out.println("C5 = " + Variant%5);
         System.out.println("C7 = " + Variant%7);
-        System.out.println("C7 = " + Variant%11);
 
         /** Input borders to Sigma */
         System.out.print("Input a : ");
